@@ -1,4 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700&display=swap");
+
+:root {
+  --bg-color: #050510;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --neon-cyan: #00f3ff;
+  --neon-pink: #bc13fe;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+}
 
 * {
   margin: 0;
@@ -7,13 +17,40 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  background-image: radial-gradient(circle at 50% 50%, #0d0d2b 0%, #050510 100%);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-pink);
+}
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 70px;
-  padding: 15px;
-  background-color: hsl(0deg 0% 9%);
+  padding: 0 25px;
+  background: rgba(5, 5, 16, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
 }
 
 .left-header {
@@ -22,44 +59,76 @@ header {
 }
 
 .left-header img {
-  width: 120px;
-  margin-left: 15px;
+  width: 100px;
+  margin-left: 20px;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
 }
 
 header i {
   padding: 0 7px;
   cursor: pointer;
+  color: var(--text-main);
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
-hr {
-  color: #4b4a4a;
+header i:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px var(--neon-cyan);
 }
 
 .material-icons {
-  color: rgb(96, 96, 96);
+  color: var(--text-main);
 }
 
 .top-header form {
-  border: 1px solid rgb(175, 173, 173);
-  height: 35px;
+  height: 40px;
   margin: 0;
   padding: 0;
   display: flex;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.top-header form:focus-within {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
 }
 
 .top-header input {
-  color: whitesmoke;
-  background-color: hsl(0deg 0% 9%);
+  color: var(--text-main);
+  background: transparent;
   width: 500px;
-  padding: 10px;
-  margin: 0;
-  border-radius: 0;
+  padding: 0 15px;
   border: none;
   height: 100%;
+  font-size: 1rem;
 }
 
-button {
-  background-color: hsl(0deg 0% 9%);
+.top-header input:focus {
+  outline: none;
+}
+
+.top-header button {
+  background: transparent;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+  border-left: 1px solid var(--glass-border);
+}
+
+.top-header button i {
+  color: var(--text-muted);
+}
+
+.top-header button:hover i {
+  color: var(--neon-cyan);
+}
+
+.header-icon i {
+  margin-left: 10px;
 }
 
 main {
@@ -70,76 +139,108 @@ main {
 
 .sidebar {
   height: 100%;
-  width: 230px;
-  background-color: #212121;
+  width: 240px;
+  background: rgba(5, 5, 16, 0.6);
+  backdrop-filter: blur(5px);
+  border-right: 1px solid var(--glass-border);
+  flex-shrink: 0;
 }
 
 .nav-bars {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  padding: 10px 0;
 }
 
 .nav-bar {
   display: flex;
   align-items: center;
   padding: 12px 25px;
+  transition: background 0.3s, color 0.3s;
+  border-left: 3px solid transparent;
 }
 
 .nav-bar span {
-  margin-left: 15px;
-  color: white;
+  margin-left: 20px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
 }
 
 .nav-bar:hover {
-  background-color: hsl(0, 0%, 18.82%);
+  background: linear-gradient(90deg, rgba(0, 243, 255, 0.1) 0%, transparent 100%);
+  border-left: 3px solid var(--neon-cyan);
   cursor: pointer;
 }
 
+.nav-bar:hover i,
+.nav-bar:hover span {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--glass-border);
+  margin: 5px 0;
+}
+
 .container {
-  background-color: hsl(0deg 0% 9%);
+  background-color: transparent;
   width: 100%;
   height: 100%;
-  padding: 15px 25px;
-  overflow-y: scroll;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .video-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 90px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding-top: 20px;
 }
 
 .video {
-  width: 310px;
-  margin-right: 10px;
-  margin-bottom: 30px;
+  width: 100%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 243, 255, 0.15);
+  border-color: var(--neon-cyan);
 }
 
 .video-pic {
   width: 100%;
   height: 170px;
+  position: relative;
 }
 
 .video-pic img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
+}
+
+.video-footer {
+  display: flex;
+  padding: 15px;
 }
 
 .profile-pic img {
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  margin-right: 10px;
-}
-
-.video-footer {
-  display: flex;
-  margin-top: 10px;
+  margin-right: 15px;
+  border: 2px solid var(--neon-pink);
+  box-shadow: 0 0 5px var(--neon-pink);
 }
 
 .video-detail {
@@ -148,22 +249,25 @@ main {
 }
 
 .video-detail h3 {
-  color: rgb(3, 3, 3);
-  line-height: 18px;
+  color: var(--text-main);
+  line-height: 1.4;
   font-size: 14px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-.video-detail a,
-span {
+.video-detail a {
   text-decoration: none;
-  color: rgb(96, 96, 96);
-  font-size: 14px;
+  color: var(--text-muted);
+  font-size: 12px;
+  transition: color 0.3s;
 }
 
-.video-detail h3 {
-  color: white;
+.video-detail a:hover {
+  color: var(--neon-cyan);
 }
-input:focus {
-  outline: none;
+
+.video-detail span {
+  color: var(--text-muted);
+  font-size: 12px;
 }
